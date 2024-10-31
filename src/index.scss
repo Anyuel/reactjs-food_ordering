@@ -1,0 +1,7 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.sticky-nav {
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+}

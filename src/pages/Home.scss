@@ -13,3 +13,28 @@
 .no-hover:hover {
   color: inherit;
 }
+
+.modal-hide {
+  display: none !important;
+}
+
+.modal-dialog-bottom {
+  animation-name: modal-ease-in;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  height: 50vh;
+}
+
+.background-div {
+  background-position: top;
+  background-size: contain;
+}
+
+@keyframes modal-ease-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+
+  }
+}

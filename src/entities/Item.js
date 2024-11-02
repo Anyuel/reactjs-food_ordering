@@ -1,8 +1,39 @@
+class Item {
+  /**
+   * @type {number}
+   */
+  id;
+  /**
+   * @type {string}
+   */
+  img;
+  /**
+   * @type {string}
+   */
+  category;
+  /**
+   * @type {string}
+   */
+  name;
+  /**
+   * @type {number}
+   */
+  price;
+  /**
+   * @type {string}
+   */
+  description;
+}
+
+class ChosenItem extends Item {
+  /**
+   * @type {ChosenItemDetail[]} 
+   */
+  details
+}
+
 /**
- * Represents an item in the components data.
- * @typedef {Object} Item
- * @property {string} img 
- * @property {string} category
- * @property {string} name
- * @property {number} price
+ * @typedef ChosenItemDetail
+ * @param {number} amount
+ * @param {string} note
  */

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { localeMoney } from "../../../lib/utils";
+import MenuBanner from "./MenuBanner";
 
 const MenuBody = ( { categories, items, navRef, onItemSelect, currCategory, setCurrCategory }) => {
   const chaptersRef = useRef([]);
@@ -33,11 +34,7 @@ const MenuBody = ( { categories, items, navRef, onItemSelect, currCategory, setC
 
   return (
     <>
-      <section className="bg-primary m-0 p-0">
-        <div className="container-fluid d-flex justify-content-center p-3">
-          <img src="/assets/home/banner.png" className="w-75" alt="banner"/>
-        </div>
-      </section>
+      <MenuBanner />
       <section className="sticky-nav bg-white" style={{ top: navRef && navRef.current ? navRef.current.offsetHeight : 0 }}>
         <div className="d-flex overflow-x-auto text-secondary">
           { categories.map(category => <a key={category} className={`px-3 mx-3 py-2 no-hover link-offset-3 ${currCategory === category ? "link-primary fw-bold" : "text-decoration-none"}`} href={`#${category}`} onClick={() => setCurrCategory(category)}>{category}</a>) }

@@ -29,7 +29,7 @@ const FullCartModal = ({ show, onClose, chosenItems, onUpdateItem }) => {
               <h4 className="col-auto fw-bold">{localeMoney(chosenItem.details.reduce((acc, curr) => acc + curr.amount, 0) * chosenItem.price)}$</h4>
             </div>
             <div className="row justify-content-between">
-              <a className="col-9 text-decoration-none fw-bold">Update</a>
+              <a className="col-9 text-decoration-none fw-bold" href="#update">Update</a>
               <div className="col-auto">
                 <div className="row">
                 <div className="col">

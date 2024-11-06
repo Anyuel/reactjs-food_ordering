@@ -6,6 +6,8 @@ import Menu from "../components/home/Menu";
 import BottomModal from "../components/home/BottomModal";
 import SmallCart from "../components/home/SmallCart";
 import FullCartModal from "../components/home/FullCartModal";
+import { useMutation } from "react-query";
+import { createOrder } from "../api/orders";
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -26,6 +28,12 @@ const Home = () => {
    * @type {[React.RefObject<HTMLDivElement>, CallableFunction]} 
    */
   const [bottomNavRefState, setBottomNavRefState] = useState(null);
+
+  const { mutate: createOrderMutation } = useMutation(() => createOrder(1, chosenItems), {
+    onSuccess: () => {
+      setChosenItems({});
+    }
+  });
 
   const onSelect = (index) => {
     setActiveIndex(index);
@@ -81,6 +89,11 @@ const Home = () => {
     });
   }
 
+  const onOrder = (e) => {
+    e.stopPropagation();
+    createOrderMutation();
+  }
+
   useEffect(() => {
     setNavRefState(navRef);
     setBottomNavRefState(bottomNavRef);
@@ -103,7 +116,7 @@ const Home = () => {
       <FullCartModal show={showFullCart} onClose={() => setShowFullCart(false)} chosenItems={chosenItems}/>
       <div style={{ height: `${bottomNavRefState?.current?.offsetHeight}px` }}></div>
       <div className="fixed-bottom z-2">
-        {Object.keys(chosenItems).map(key => chosenItems[key].details.map(detail => detail.amount).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0) > 0 && <SmallCart chosenItems={chosenItems} onOpenFullCart={() => setShowFullCart(true)}/> }
+        {Object.keys(chosenItems).map(key => chosenItems[key].details.map(detail => detail.amount).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0) > 0 && <SmallCart chosenItems={chosenItems} onOpenFullCart={() => setShowFullCart(true)} onOrder={onOrder}/> }
         <BottomNav activeIndex={activeIndex} onSelect={onSelect} ref={bottomNavRef}/>
       </div>
     </>

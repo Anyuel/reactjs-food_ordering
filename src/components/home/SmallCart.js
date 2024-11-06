@@ -5,9 +5,11 @@ import { localeMoney } from "../../lib/utils";
 /**
  * @param {Object} properties
  * @param {Map<number, ChosenItem} properties.chosenItems
+ * @param {function():void} properties.onOpenFullCart
+ * @param {function():void} properties.onOrder
  * @returns 
  */
-const SmallCart = ({ chosenItems, onOpenFullCart }) => {
+const SmallCart = ({ chosenItems, onOpenFullCart, onOrder }) => {
   return (
     <div className="mb-5 mx-4 rounded shadow bg-white border" onClick={onOpenFullCart}>
       <div className="container-fluid">
@@ -41,7 +43,7 @@ const SmallCart = ({ chosenItems, onOpenFullCart }) => {
             )}$</h5>
           </div>
           <div className="col-auto d-grid align-items-center mx-2">
-            <button className="btn btn-primary">Order</button>
+            <button className="btn btn-primary" onClick={onOrder}>Order</button>
           </div>
         </div>
       </div>
